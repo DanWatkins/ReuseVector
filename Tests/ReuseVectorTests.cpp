@@ -87,6 +87,30 @@ private Q_SLOTS:
     }
 
 
+    void iteratorIncrement1()
+    {
+        ReuseVector<int> rv;
+        rv.pushBack(50);
+        rv.pushBack(300);
+
+        ReuseVector<int>::Iterator iter = rv.begin();
+        QCOMPARE(*(++iter), 300);
+    }
+
+
+    void iteratorIncrement2()
+    {
+        ReuseVector<std::string> rv;
+        rv.pushBack("abc");
+        rv.pushBack("lol");
+        rv.pushBack("cpp");
+
+        ReuseVector<std::string>::Iterator iter = rv.begin();
+        ++iter;
+        QCOMPARE(*(++iter), std::string("cpp"));
+    }
+
+
 private:
 	void testResizeCapacity(unsigned capacity)
 	{

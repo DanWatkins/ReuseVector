@@ -18,6 +18,12 @@ public:
         friend class ReuseVector;
         Type operator*() { return *mPos; }
 
+        Iterator& operator++()
+        {
+            ++mPos;
+            return *this;
+        }
+
     private:
         Iterator(Type *pos) :
             mPos(pos)
