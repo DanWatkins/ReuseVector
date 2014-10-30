@@ -8,24 +8,24 @@ template <typename Type>
 class ReuseVector
 {
 public:
-	ReuseVector() :
-		mCapacity(0),
-		mSize(0)
+	ReuseVector()
 	{
 	}
 
-	unsigned size() const { return mSize; }
-	unsigned capacity() const { return mCapacity; }
-	void resize(unsigned capacity) { mCapacity = capacity; }
+	unsigned size() const { return mData.size(); }
+	unsigned capacity() const { return mData.capacity(); }
+	void resize(unsigned capacity) { mData.resize(capacity); }
+
+	Type& front() { return mData.front(); }
+	Type& back() { return mData.back(); }
 
 	void pushBack(const Type &value)
 	{
-		mSize++;
+		mData.push_back(value);
 	}
 
 private:
-	unsigned mCapacity;
-	unsigned mSize;
+	std::vector<Type> mData;
 };
 
 #endif

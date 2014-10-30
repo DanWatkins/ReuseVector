@@ -1,6 +1,7 @@
 #include <QString>
 #include <QtTest>
 #include <ReuseVector.h>
+#include <string>
 
 class ReuseVectorTests : public QObject
 {
@@ -28,6 +29,42 @@ private Q_SLOTS:
 
 		rv.pushBack(77);
 		QCOMPARE(rv.size(), 2U);
+	}
+
+
+	void frontAccess1()
+	{
+		ReuseVector<int> rv;
+		rv.pushBack(4);
+		rv.pushBack(77);
+		QCOMPARE(rv.front(), 4);
+	}
+
+
+	void frontAccess2()
+	{
+		ReuseVector<std::string> rv;
+		rv.pushBack("abc");
+		rv.pushBack("bcd");
+		rv.pushBack("cde");
+		QCOMPARE(rv.front(), std::string("abc"));
+	}
+
+
+	void backAccess1()
+	{
+		ReuseVector<int> rv;
+		rv.pushBack(45);
+		QCOMPARE(rv.back(), 45);
+	}
+
+
+	void backAccess2()
+	{
+		ReuseVector<std::string> rv;
+		rv.pushBack("Water");
+		rv.pushBack("Salad");
+		QCOMPARE(rv.back(), std::string("Salad"));
 	}
 
 
