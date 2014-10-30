@@ -8,9 +8,26 @@ template <typename Type>
 class ReuseVector
 {
 public:
-	ReuseVector()
+    ReuseVector()
 	{
 	}
+
+    class Iterator
+    {
+    public:
+        friend class ReuseVector;
+        Type operator*() { return *mPos; }
+
+    private:
+        Iterator(Type *pos) :
+            mPos(pos)
+        {
+        }
+
+        Type *mPos;
+    };
+
+    Iterator begin() { return Iterator(&mData[0]); }
 
 	unsigned size() const { return mData.size(); }
 	unsigned capacity() const { return mData.capacity(); }

@@ -68,6 +68,25 @@ private Q_SLOTS:
 	}
 
 
+    void iteratorToBegin()
+    {
+        ReuseVector<int> rv;
+        rv.pushBack(50);
+        ReuseVector<int>::Iterator iter = rv.begin();
+
+        QCOMPARE(*iter, 50);
+    }
+
+    void iteratorToBegin2()
+    {
+        ReuseVector<int> rv;
+        rv.pushBack(7);
+        ReuseVector<int>::Iterator iter = rv.begin();
+
+        QCOMPARE(*iter, 7);
+    }
+
+
 private:
 	void testResizeCapacity(unsigned capacity)
 	{
