@@ -10,12 +10,34 @@ public:
 	ReuseVectorTests();
 
 private Q_SLOTS:
-	void resize()
+	void resizeCheckCapacity()
+	{
+		testResizeCapacity(0);
+		testResizeCapacity(50);
+		testResizeCapacity(8000);
+	}
+
+
+	void pushBackCheckSize()
 	{
 		ReuseVector<int> rv;
-		rv.resize(50);
+		QCOMPARE(rv.size(), 0U);
 
-		QCOMPARE(rv.capacity(), 50);
+		rv.pushBack(45);
+		QCOMPARE(rv.size(), 1U);
+
+		rv.pushBack(77);
+		QCOMPARE(rv.size(), 2U);
+	}
+
+
+private:
+	void testResizeCapacity(unsigned capacity)
+	{
+		ReuseVector<int> rv;
+		rv.resize(capacity);
+
+		QCOMPARE(rv.capacity(), capacity);
 	}
 };
 

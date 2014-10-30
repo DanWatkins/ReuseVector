@@ -8,12 +8,24 @@ template <typename Type>
 class ReuseVector
 {
 public:
-	ReuseVector()
+	ReuseVector() :
+		mCapacity(0),
+		mSize(0)
 	{
 	}
 
-	void resize(int capacity) {}
-	int capacity() { return 50; }
+	unsigned size() const { return mSize; }
+	unsigned capacity() const { return mCapacity; }
+	void resize(unsigned capacity) { mCapacity = capacity; }
+
+	void pushBack(const Type &value)
+	{
+		mSize++;
+	}
+
+private:
+	unsigned mCapacity;
+	unsigned mSize;
 };
 
 #endif
