@@ -24,6 +24,18 @@ public:
             return *this;
         }
 
+
+		bool operator==(const Iterator &iter)
+		{
+			return mPos == iter.mPos;
+		}
+
+
+		bool operator!=(const Iterator &iter)
+		{
+			return mPos != iter.mPos;
+		}
+
     private:
         Iterator(Type *pos) :
             mPos(pos)
@@ -34,6 +46,7 @@ public:
     };
 
     Iterator begin() { return Iterator(&mData[0]); }
+	Iterator end() { return ++Iterator(&mData.back()); }
 
 	unsigned size() const { return mData.size(); }
 	unsigned capacity() const { return mData.capacity(); }

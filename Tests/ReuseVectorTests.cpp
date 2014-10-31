@@ -111,6 +111,49 @@ private Q_SLOTS:
     }
 
 
+	void iteratorBeginToEnd1()
+	{
+		ReuseVector<int> rv;
+		rv.pushBack(1);
+		rv.pushBack(2);
+		rv.pushBack(3);
+
+		int sum = 0;	//sum of all values in rv
+
+		ReuseVector<int>::Iterator iter = rv.begin();
+		while (iter != rv.end())
+		{
+			sum += *iter;
+			++iter;
+		}
+
+		QCOMPARE(sum, 6);
+	}
+
+
+	void iteratorBeginToEnd2()
+	{
+		ReuseVector<int> rv;
+		rv.pushBack(4);
+		rv.pushBack(5);
+		rv.pushBack(6);
+
+		int sum = 0;	//sum of all values in rv
+
+		ReuseVector<int>::Iterator iter = rv.begin();
+		while (true)	//just testing a weird type of iteration here
+		{
+			if (iter == rv.end())
+				break;
+
+			sum += *iter;
+			++iter;
+		}
+
+		QCOMPARE(sum, 15);
+	}
+
+
 private:
 	void testResizeCapacity(unsigned capacity)
 	{
