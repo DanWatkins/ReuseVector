@@ -36,6 +36,28 @@ public:
 			return mPos != iter.mPos;
 		}
 
+		Iterator operator+(int offset)
+		{
+			return Iterator(mPos + offset);
+		}
+
+		Iterator operator-(int offset)
+		{
+			return Iterator(mPos - offset);
+		}
+
+		Iterator& operator+=(int offset)
+		{
+			mPos += offset;
+			return *this;
+		}
+
+		Iterator& operator-=(int offset)
+		{
+			mPos -= offset;
+			return *this;
+		}
+
     private:
         Iterator(Type *pos) :
             mPos(pos)
@@ -55,10 +77,7 @@ public:
 	Type& front() { return mData.front(); }
 	Type& back() { return mData.back(); }
 
-	void pushBack(const Type &value)
-	{
-		mData.push_back(value);
-	}
+	void pushBack(const Type &value) { mData.push_back(value); }
 
 private:
 	std::vector<Type> mData;

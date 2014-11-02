@@ -111,23 +111,81 @@ private Q_SLOTS:
     }
 
 
+	void iteratorSum()
+	{
+		ReuseVector<int> rv;
+		rv.pushBack(10);
+		rv.pushBack(20);
+		rv.pushBack(44);
+
+		QCOMPARE(*(rv.begin()+2), 44);
+	}
+
+
+	void iteratorDifference()
+	{
+		ReuseVector<int> rv;
+		rv.pushBack(10);
+		rv.pushBack(20);
+		rv.pushBack(44);
+
+		ReuseVector<int>::Iterator iter = rv.begin();
+		++iter;
+
+		QCOMPARE(*(iter-1), 10);
+	}
+
+
+	/////// COMPOUND ASSIGNMENT ///////
+	ReuseVector<std::string> buildIteratorCompoundAssignmentVector()
+	{
+		ReuseVector<std::string> rv;
+		rv.pushBack("Cow");
+		rv.pushBack("Ballon");
+		rv.pushBack("The Walking Dead");
+		rv.pushBack("Rick");
+		rv.pushBack("Zombie Extras Drinking Water");
+		rv.pushBack("Gareth");
+
+		return rv;
+	}
+
+
+	void iteratorAdditionAssignment()
+	{
+		ReuseVector<std::string> rv = buildIteratorCompoundAssignmentVector();
+		QCOMPARE(*(rv.begin()+=3), std::string("Rick"));
+	}
+
+
+	void iteratorAdditionSubtractionAssignment()
+	{
+		ReuseVector<std::string> rv = buildIteratorCompoundAssignmentVector();
+		ReuseVector<std::string>::Iterator iter = rv.begin();
+		iter += 4;
+		iter -= 2;
+		QCOMPARE(*iter, std::string("The Walking Dead"));
+	}
+
+
+	/////// BASIC ITERATION ///////
 	void iteratorBeginToEnd1()
 	{
 		ReuseVector<int> rv;
-		rv.pushBack(1);
-		rv.pushBack(2);
-		rv.pushBack(3);
-
-		int sum = 0;	//sum of all values in rv
+		rv.pushBack(10);
+		rv.pushBack(20);
+		rv.pushBack(44);
 
 		ReuseVector<int>::Iterator iter = rv.begin();
+		int sum = 0;	//sum of all values in rv
+
 		while (iter != rv.end())
 		{
 			sum += *iter;
 			++iter;
 		}
 
-		QCOMPARE(sum, 6);
+		QCOMPARE(sum, 74);
 	}
 
 
