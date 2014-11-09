@@ -25,6 +25,13 @@ public:
         }
 
 
+		Iterator& operator--()
+		{
+			--mPos;
+			return *this;
+		}
+
+
 		bool operator==(const Iterator &iter)
 		{
 			return mPos == iter.mPos;
@@ -78,6 +85,11 @@ public:
 	Type& back() { return mData.back(); }
 
 	void pushBack(const Type &value) { mData.push_back(value); }
+	void erase(const Iterator &position)
+	{
+		int offset = position.mPos - &mData[0];
+		mData.erase(mData.begin()+offset);
+	}
 
 private:
 	std::vector<Type> mData;

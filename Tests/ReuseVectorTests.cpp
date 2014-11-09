@@ -212,6 +212,34 @@ private Q_SLOTS:
 	}
 
 
+	void erasePosition1()
+	{
+		ReuseVector<int> rv;
+		rv.pushBack(3);
+		rv.pushBack(68);
+
+		rv.erase(rv.begin());
+
+		QCOMPARE(rv.front(), 68);
+		QCOMPARE(rv.size(), 1U);
+	}
+
+
+	void erasePosition2()
+	{
+		ReuseVector<std::string> rv;
+		rv.pushBack("water");
+		rv.pushBack("void");
+		rv.pushBack("november");
+
+		rv.erase(++rv.begin());
+
+		QCOMPARE(rv.front(), std::string("water"));
+		QCOMPARE(rv.size(), 2U);
+	}
+
+
+
 private:
 	void testResizeCapacity(unsigned capacity)
 	{
