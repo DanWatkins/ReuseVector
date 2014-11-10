@@ -107,6 +107,11 @@ public:
 		mData.swap(rv.mData);
 	}
 
+	void insert(Iterator position, const Type &value)
+	{
+		mData.insert(mData.begin()+(position.mPos-&mData[0]), value);
+	}
+
 private:
 	std::vector<Type> mData;
 };

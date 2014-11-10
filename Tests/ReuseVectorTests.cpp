@@ -295,6 +295,34 @@ private Q_SLOTS:
 		QCOMPARE(rv2.back(), 9);
 	}
 
+	void insertSingleElement1()
+	{
+		ReuseVector<int> rv;
+		rv.pushBack(30);
+		rv.pushBack(40);
+		rv.pushBack(50);
+
+		rv.insert(rv.begin(), 20);
+
+		QCOMPARE(rv.front(), 20);
+		QCOMPARE(*++rv.begin(), 30);
+		QCOMPARE(rv.size(), 4U);
+	}
+
+	void insertSingleElement2()
+	{
+		ReuseVector<int> rv;
+		rv.pushBack(30);
+		rv.pushBack(40);
+		rv.pushBack(50);
+
+		rv.insert(++rv.begin(), 35);
+
+		QCOMPARE(rv.front(), 30);
+		QCOMPARE(*++rv.begin(), 35);
+		QCOMPARE(rv.size(), 4U);
+	}
+
 
 private:
 	void testResizeCapacity(unsigned capacity)
