@@ -75,7 +75,7 @@ public:
     };
 
     Iterator begin() { return Iterator(&mData[0]); }
-	Iterator end() { return ++Iterator(&mData.back()); }
+	Iterator end() { return Iterator(&mData.back() + 1); }
 
 	unsigned size() const { return mData.size(); }
 	unsigned capacity() const { return mData.capacity(); }
@@ -85,10 +85,21 @@ public:
 	Type& back() { return mData.back(); }
 
 	void pushBack(const Type &value) { mData.push_back(value); }
+
 	void erase(const Iterator &position)
 	{
 		int offset = position.mPos - &mData[0];
 		mData.erase(mData.begin()+offset);
+	}
+
+	void erase(const Iterator &begin, const Iterator &end)
+	{
+		typename std::vector<Type>::iterator beginStd;
+		typename std::vector<Type>::iterator endStd;
+		beginStd = mData.begin() + (begin.mPos-&mData[0]);
+		endStd = mData.begin() + (end.mPos-&mData[0]);
+
+		mData.erase(beginStd, endStd);
 	}
 
 private:

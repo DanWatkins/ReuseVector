@@ -239,6 +239,45 @@ private Q_SLOTS:
 	}
 
 
+	void eraseRange1()
+	{
+		ReuseVector<int> rv;
+		rv.pushBack(40);
+		rv.pushBack(50);
+		rv.pushBack(60);
+
+		rv.erase(rv.begin(), rv.end());
+
+		QCOMPARE(rv.size(), 0U);
+	}
+
+	void eraseRange2()
+	{
+		ReuseVector<std::string> rv;
+		rv.pushBack("May");
+
+		rv.erase(rv.begin(), rv.end());
+
+		QCOMPARE(rv.size(), 0U);
+	}
+
+	void eraseRange3()
+	{
+		ReuseVector<std::string> rv;
+		rv.pushBack("a");
+		rv.pushBack("b");
+		rv.pushBack("c");
+		rv.pushBack("d");
+		rv.pushBack("e");
+
+		rv.erase(rv.begin()+1, rv.begin()+4);
+
+		QCOMPARE(rv.size(), 2U);
+		QCOMPARE(rv.front(), std::string("a"));
+		QCOMPARE(rv.back(), std::string("e"));
+	}
+
+
 
 private:
 	void testResizeCapacity(unsigned capacity)
