@@ -277,6 +277,23 @@ private Q_SLOTS:
 		QCOMPARE(rv.back(), std::string("e"));
 	}
 
+	void swap1()
+	{
+		ReuseVector<int> rv1;
+		rv1.pushBack(556);
+		rv1.pushBack(789);
+		rv1.pushBack(9);
+
+		ReuseVector<int> rv2;
+		rv2.pushBack(2);
+		rv1.swap(rv2);
+
+		QCOMPARE(rv1.size(), 1U);
+		QCOMPARE(rv1.front(), 2);
+		QCOMPARE(rv2.size(), 3U);
+		QCOMPARE(rv2.front(), 556);
+		QCOMPARE(rv2.back(), 9);
+	}
 
 
 private:

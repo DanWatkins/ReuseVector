@@ -102,6 +102,11 @@ public:
 		mData.erase(beginStd, endStd);
 	}
 
+	void swap(ReuseVector<Type> &rv)
+	{
+		mData.swap(rv.mData);
+	}
+
 private:
 	std::vector<Type> mData;
 };
