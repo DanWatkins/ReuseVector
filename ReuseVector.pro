@@ -2,6 +2,6 @@ TEMPLATE = subdirs
 
 CONFIG += ordered
 
-SUBDIRS += \
+SUBDIRS += ide/External/gtest \
 	ide/Library \
 	ide/Tests
