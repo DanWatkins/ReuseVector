@@ -333,3 +333,16 @@ TEST_F(Test_ReuseVector, insertSingleElement2)
 	ASSERT_EQ(*++rv.begin(), 35);
 	ASSERT_EQ(rv.size(), 4U);
 }
+
+
+TEST_F(Test_ReuseVector, clear1)
+{
+	ReuseVector<int> rv;
+	rv.pushBack(3);
+	rv.pushBack(4);
+	rv.pushBack(64);
+	rv.clear();
+
+	ASSERT_EQ(rv.size(), 0);
+	ASSERT_EQ(rv.capacity(), 0);
+}

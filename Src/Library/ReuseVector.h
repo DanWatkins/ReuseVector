@@ -102,6 +102,12 @@ public:
 		mData.erase(beginStd, endStd);
 	}
 
+	void clear()
+	{
+		mData.clear();
+		mData.shrink_to_fit();
+	}
+
 	void swap(ReuseVector<Type> &rv)
 	{
 		mData.swap(rv.mData);
