@@ -346,3 +346,28 @@ TEST_F(Test_ReuseVector, clear1)
 	ASSERT_EQ(rv.size(), 0);
 	ASSERT_EQ(rv.capacity(), 0);
 }
+
+
+TEST_F(Test_ReuseVector, contains1)
+{
+	ReuseVector<int> rv;
+	rv.pushBack(3);
+	rv.pushBack(4);
+
+	ASSERT_TRUE(rv.contains(4));
+	ASSERT_FALSE(rv.contains(5));
+}
+
+
+TEST_F(Test_ReuseVector, contains2)
+{
+	ReuseVector<std::string> rv;
+	rv.pushBack("December");
+	rv.pushBack("January");
+	rv.pushBack("February");
+
+	ASSERT_TRUE(rv.contains("February"));
+	ASSERT_TRUE(rv.contains("January"));
+	ASSERT_TRUE(rv.contains("December"));
+	ASSERT_FALSE(rv.contains("September"));
+}

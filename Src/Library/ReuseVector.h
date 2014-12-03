@@ -81,6 +81,18 @@ public:
 	unsigned capacity() const { return mData.capacity(); }
 	void resize(unsigned capacity) { mData.resize(capacity); }
 
+	bool contains(const Type &value)
+	{
+		auto i = mData.cbegin();
+		while (i != mData.cend())
+		{
+			if (*i == value)
+				return true;
+		}
+
+		return false;
+	}
+
 	Type& front() { return mData.front(); }
 	Type& back() { return mData.back(); }
 
