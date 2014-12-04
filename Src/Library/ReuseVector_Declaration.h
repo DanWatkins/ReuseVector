@@ -12,67 +12,7 @@ public:
 	{
 	}
 
-	class Iterator
-	{
-	public:
-		friend class ReuseVector;
-		Type operator*() { return *mPos; }
-
-		Iterator& operator++()
-		{
-			++mPos;
-			return *this;
-		}
-
-
-		Iterator& operator--()
-		{
-			--mPos;
-			return *this;
-		}
-
-
-		bool operator==(const Iterator &iter)
-		{
-			return mPos == iter.mPos;
-		}
-
-
-		bool operator!=(const Iterator &iter)
-		{
-			return mPos != iter.mPos;
-		}
-
-		Iterator operator+(int offset)
-		{
-			return Iterator(mPos + offset);
-		}
-
-		Iterator operator-(int offset)
-		{
-			return Iterator(mPos - offset);
-		}
-
-		Iterator& operator+=(int offset)
-		{
-			mPos += offset;
-			return *this;
-		}
-
-		Iterator& operator-=(int offset)
-		{
-			mPos -= offset;
-			return *this;
-		}
-
-	private:
-		Iterator(Type *pos) :
-			mPos(pos)
-		{
-		}
-
-		Type *mPos;
-	};
+	class Iterator;
 
 	/*
 	 * Returns a reference to the last element in the vector.
@@ -84,7 +24,7 @@ public:
 	 * Returns an iterator pointing to the first element in the vector.
 	 * If the vector is empty, the returned iterator cannot be dereferenced.
 	 */
-	Iterator begin() { return Iterator(&mData[0]); }
+	Iterator begin();
 
 	/*
 	 *
@@ -104,7 +44,7 @@ public:
 	/*
 	 *
 	 */
-	Iterator end() { return Iterator(&mData.back() + 1); }
+	Iterator end();
 
 	/*
 	 *

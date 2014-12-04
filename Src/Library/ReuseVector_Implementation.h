@@ -2,6 +2,7 @@
 #define _REUSE_VECTOR_IMPLEMENTATION_H
 
 #include "ReuseVector_Declaration.h"
+#include "ReuseVectorIterator.h"
 
 template <typename Type>
 bool ReuseVector<Type>::contains(const Type &value)
@@ -56,6 +57,19 @@ template <typename Type>
 void ReuseVector<Type>::insert(Iterator position, const Type &value)
 {
 	mData.insert(mData.begin()+(position.mPos-&mData[0]), value);
+}
+
+
+template <typename Type>
+typename ReuseVector<Type>::Iterator ReuseVector<Type>::begin()
+{
+	return Iterator(&mData[0]);
+}
+
+template <typename Type>
+typename ReuseVector<Type>::Iterator ReuseVector<Type>::end()
+{
+	return Iterator(&mData.back() + 1);
 }
 
 
