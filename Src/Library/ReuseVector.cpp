@@ -1,7 +1,7 @@
 #ifndef _REUSE_VECTOR_IMPLEMENTATION_H
 #define _REUSE_VECTOR_IMPLEMENTATION_H
 
-#include "ReuseVector_Declaration.h"
+#include "ReuseVector.h"
 #include "ReuseVectorIterator.h"
 
 template <typename Type>

@@ -1,61 +1,58 @@
 #ifndef _REUSE_VECTOR_ITERATOR_H
 #define _REUSE_VECTOR_ITERATOR_H
 
-#include "ReuseVector_Declaration.h"
+#include "ReuseVector.h"
 
 template <typename Type>
 class ReuseVector<Type>::Iterator
 {
 public:
 	friend class ReuseVector;
+
+	/*
+	 *
+	 */
 	Type operator*() { return *mPos; }
 
-	Iterator& operator++()
-	{
-		++mPos;
-		return *this;
-	}
+	/*
+	 *
+	 */
+    Iterator& operator++();
 
+	/*
+	 *
+	 */
+    Iterator& operator--();
 
-	Iterator& operator--()
-	{
-		--mPos;
-		return *this;
-	}
+	/*
+	 *
+	 */
+    bool operator==(const Iterator &iter);
 
+	/*
+	 *
+	 */
+    bool operator!=(const Iterator &iter);
 
-	bool operator==(const Iterator &iter)
-	{
-		return mPos == iter.mPos;
-	}
+	/*
+	 *
+	 */
+    Iterator operator+(int offset);
 
+	/*
+	 *
+	 */
+    Iterator operator-(int offset);
 
-	bool operator!=(const Iterator &iter)
-	{
-		return mPos != iter.mPos;
-	}
+	/*
+	 *
+	 */
+    Iterator& operator+=(int offset);
 
-	Iterator operator+(int offset)
-	{
-		return Iterator(mPos + offset);
-	}
-
-	Iterator operator-(int offset)
-	{
-		return Iterator(mPos - offset);
-	}
-
-	Iterator& operator+=(int offset)
-	{
-		mPos += offset;
-		return *this;
-	}
-
-	Iterator& operator-=(int offset)
-	{
-		mPos -= offset;
-		return *this;
-	}
+	/*
+	 *
+	 */
+    Iterator& operator-=(int offset);
 
 private:
 	Iterator(Type *pos) :
@@ -65,5 +62,7 @@ private:
 
 	Type *mPos;
 };
+
+#include "ReuseVectorIterator.cpp"
 
 #endif
