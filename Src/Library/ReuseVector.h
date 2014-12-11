@@ -38,64 +38,68 @@ public:
     Iterator begin();
 
     /*
-     *
+     * @returns the maximum number of elements that can be stored before a
+     * reallocation must occur.
      */
     unsigned capacity() const { return mData.capacity(); }
 
     /*
-     *
+     * Removes all elements from the container with a resulting size of 0. The
+     * capacity remains the same.
      */
     void clear();
 
     /*
-     *
+     * @returns true if an occurence of value is found.
      */
     bool contains(const Type &value);
 
     /*
-     *
+     * @returns an Iterator that points to one past the last element. The
+     * Iterator is not dereferencable.
      */
     Iterator end();
 
     /*
 	 * Nulls the value at the iterator position, and then swaps it with the last
-	 * value in the container. Runs in O(1) time. Size is decremented by 1 and
-	 * capacity is unaffected.
+     * value in the container. Runs in O(1) time. Size is decremented by 1.
+     * Capacity is unaffected.
      */
     void erase(const Iterator &position);
 
     /*
-     *
+     * Performs an erase(position) for each iterator position in the range
+     * [begin, end]. Runs in O(n) time on the number of positions erased. Size
+     * is decremented by the number of positions erased. Capacity is unaffected.
      */
     void erase(const Iterator &begin, const Iterator &end);
 
     /*
-     *
+     * @returns a reference to the first element in the vector.
+     * Calling this function while the vector is empty is undefined behavior.
      */
     Type& front() { return mData.front(); }
 
     /*
-     *
+     * TODO remove this. It doesn't make sense for an orderless container
      */
     void insert(Iterator position, const Type &value);
 
     /*
-     *
+     * Adds a new element after the current last element. value is copied into
+     * the new location. TODO move semantics someday. This increments the size
+     * by 1. If the size exceeds the capacity, a resize will occur to accomodate
+     * the new element. TODO define growth rate here someday maybe.
      */
     void pushBack(const Type &value) { mData.push_back(value); }
 
     /*
-     *
-     */
-    void resize(unsigned capacity) { mData.resize(capacity); }
-
-    /*
-     *
+     * @returns the number of elements in the container.
      */
     unsigned size() const { return mData.size(); }
 
     /*
-     *
+     * Exchanges the elements in rv with the contents of this. TODO iter valid?
      */
     void swap(ReuseVector<Type> &rv);
 
